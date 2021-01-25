@@ -44,6 +44,8 @@ def df_to_dataset(df, predictor,  batch_size=32):
 
 # build vocab for categorical features
 def write_vocabulary_file(vocab_list, field_name, default_value, vocab_dir='./diabetes_vocab/'):
+    if not os.path.exists(vocab_dir):
+        os.makedirs(vocab_dir)
     output_file_path = os.path.join(vocab_dir, str(field_name) + "_vocab.txt")
     # put default value in first row as TF requires
     vocab_list = np.insert(vocab_list, 0, default_value, axis=0) 
